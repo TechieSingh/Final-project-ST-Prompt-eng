@@ -80,11 +80,18 @@ python setup_knowledge_base.py
 ```
 
 ### Step 5: Run the Application
+
+**Option A: Web Interface (Streamlit)**
 ```bash
 streamlit run app.py
 ```
-
 The application will open in your default web browser at `http://localhost:8501`
+
+**Option B: Command Line Interface (Simple & Fast)**
+```bash
+python cli.py
+```
+Interactive CLI for quick local testing without a web browser
 
 ## Usage Guide
 
