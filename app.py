@@ -19,24 +19,40 @@ import logging
 # Suppress warnings BEFORE any other imports
 warnings.filterwarnings("ignore")
 os.environ["PYTHONWARNINGS"] = "ignore"
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # Suppress specific loggers
 logging.getLogger("chromadb").setLevel(logging.CRITICAL)
 logging.getLogger("httpx").setLevel(logging.CRITICAL)
 logging.getLogger("httpcore").setLevel(logging.CRITICAL)
+logging.getLogger("transformers").setLevel(logging.ERROR)
+logging.getLogger("torch").setLevel(logging.ERROR)
 
-# Redirect stderr for chromadb telemetry errors
-class SuppressChromaTelemetry:
+# Redirect stderr to filter out unwanted messages
+class SuppressWarnings:
+    def __init__(self):
+        self.original_stderr = sys.__stderr__
+    
     def write(self, text):
-        if "telemetry" in text.lower() or "torch.classes" in text.lower():
+        # Filter out specific warning messages
+        if any(keyword in text.lower() for keyword in [
+            "torch.classes",
+            "telemetry",
+            "examining the path",
+            "tried to instantiate class"
+        ]):
             return
-        sys.__stderr__.write(text)
+        self.original_stderr.write(text)
+    
     def flush(self):
-        sys.__stderr__.flush()
+        self.original_stderr.flush()
+    
+    def __getattr__(self, name):
+        return getattr(self.original_stderr, name)
 
 # Only suppress if not in debug mode
 if not os.getenv("DEBUG"):
-    sys.stderr = SuppressChromaTelemetry()
+    sys.stderr = SuppressWarnings()
 
 import streamlit as st
 import tempfile
