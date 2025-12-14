@@ -15,17 +15,16 @@ class PromptEngineer:
         self.model = model
     
     def _get_base_system_prompt(self) -> str:
-        return """You are an expert educational content creator. Generate high-quality, 
-        accurate, and pedagogically sound educational materials. Always ensure that:
-        1. Content is factually accurate
-        2. Information is presented clearly and understandably
-        3. Content is appropriate for the target audience
-        4. Examples are relevant and helpful
-        5. Content follows educational best practices"""
+        return """You are an educational content creator. Generate accurate and clear educational materials. Make sure:
+        1. Content is accurate
+        2. Information is clear and easy to understand
+        3. Content fits the target audience
+        4. Examples are helpful
+        5. Content is well-organized"""
     
     def _get_content_type_prompts(self) -> Dict[str, str]:
         return {
-            "study_guide": """Create a comprehensive study guide on the given topic. Include:
+            "study_guide": """Create a study guide on the given topic. Include:
             - Key concepts and definitions
             - Important points to remember
             - Examples and applications
@@ -40,7 +39,7 @@ class PromptEngineer:
             - Short answer questions (at least 2)
             - Provide correct answers at the end
             
-            Ensure questions test understanding, not just memorization.""",
+            Questions should test understanding, not just memorization.""",
             
             "explanation": """Provide a clear, detailed explanation of the given topic. Include:
             - Definition and overview
@@ -57,7 +56,7 @@ class PromptEngineer:
             - Key relationships or connections
             - Brief conclusion
             
-            Keep it concise but comprehensive.""",
+            Keep it short but cover the main points.""",
             
             "practice_problems": """Generate practice problems on the given topic. Include:
             - Problems of varying difficulty (easy, medium, hard)
@@ -65,7 +64,7 @@ class PromptEngineer:
             - Explanations of solution methods
             - Tips for solving similar problems
             
-            Ensure problems are practical and help build understanding."""
+            Problems should be practical and help build understanding."""
         }
     
     def generate_content(
@@ -85,7 +84,7 @@ class PromptEngineer:
         
         context_section = ""
         if context:
-            context_section = f"\n\nRelevant Context from Knowledge Base:\n{context}\n\nUse this context to ensure accuracy and relevance. If the context doesn't fully cover the topic, supplement with your knowledge while maintaining accuracy."
+            context_section = f"\n\nRelevant Context from Knowledge Base:\n{context}\n\nUse this context to make the content accurate and relevant. If the context doesn't fully cover the topic, you can add your own knowledge but keep it accurate."
         
         requirements_section = ""
         if additional_requirements:
@@ -142,6 +141,6 @@ Generate the content now:"""
         # Basic content filter
         inappropriate_keywords = ["violence", "illegal", "harmful"]
         if any(keyword in user_input.lower() for keyword in inappropriate_keywords):
-            return "Please ensure your topic is appropriate for educational content."
+            return "Please make sure your topic is appropriate for educational content."
         
         return None

@@ -56,10 +56,10 @@ def main():
             st.error("API Key not found")
         
         if st.button("Initialize Systems", type="primary"):
-        with st.spinner("Initializing..."):
-            if initialize_systems():
-                st.success("Ready!")
-                st.rerun()
+            with st.spinner("Initializing..."):
+                if initialize_systems():
+                    st.success("Ready!")
+                    st.rerun()
         
         st.divider()
         

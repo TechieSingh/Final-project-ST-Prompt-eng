@@ -10,6 +10,32 @@ Generates educational materials like study guides, quizzes, explanations, summar
 
 The system uses RAG to search through uploaded documents and prompt engineering to generate different types of content. You can upload PDFs or text files to build a knowledge base, then generate content based on those documents.
 
+### System Architecture
+
+```mermaid
+graph TB
+    User[👤 User] -->|Interacts with| UI[Streamlit Web Interface<br/>app.py]
+    
+    UI -->|Calls| PE[Prompt Engineer<br/>prompt_engineer.py]
+    UI -->|Calls| RAG[RAG System<br/>rag_system.py]
+    
+    PE -->|Sends prompts| OpenAI[OpenAI API<br/>GPT-3.5-turbo]
+    RAG -->|Stores/Retrieves| ChromaDB[ChromaDB Vector Store<br/>Embeddings]
+    RAG -->|Creates embeddings| EmbedAPI[OpenAI Embeddings API<br/>text-embedding-ada-002]
+    
+    OpenAI -->|Returns content| PE
+    PE -->|Returns content| UI
+    RAG -->|Returns context| UI
+    UI -->|Displays| User
+    
+    style UI fill:#e1f5ff
+    style PE fill:#fff4e1
+    style RAG fill:#e8f5e9
+    style OpenAI fill:#f3e5f5
+    style ChromaDB fill:#fff9c4
+    style EmbedAPI fill:#f3e5f5
+```
+
 ## Setup
 
 1. Install dependencies:
@@ -51,10 +77,8 @@ streamlit run app.py
 
 ## Documentation
 
-- [Project Documentation PDF](PROJECT_DOCUMENTATION.pdf) - Complete documentation
-- [Video Demo](https://youtube.com/watch?v=YOUR_VIDEO_ID) - 10-minute demonstration
+- [Project Documentation](docs/PROJECT_DOCUMENTATION.md) - Complete documentation
 - [Web Page](web_page/index.html) - Project showcase
-- [Full Documentation](docs/PROJECT_DOCUMENTATION.md) - Detailed docs
 
 ## Testing
 

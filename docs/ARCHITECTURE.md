@@ -6,14 +6,30 @@ The project has three main parts: RAG system (handles documents), prompt enginee
 
 ## Architecture
 
-```
-Streamlit App (app.py)
-    │
-    ├─── Prompt Engineer (prompt_engineer.py)
-    │    └─── OpenAI API
-    │
-    └─── RAG System (rag_system.py)
-         └─── ChromaDB Vector Store
+### System Architecture Diagram
+
+```mermaid
+graph TB
+    User[👤 User] -->|Interacts with| UI[Streamlit Web Interface<br/>app.py]
+    
+    UI -->|Calls| PE[Prompt Engineer<br/>prompt_engineer.py]
+    UI -->|Calls| RAG[RAG System<br/>rag_system.py]
+    
+    PE -->|Sends prompts| OpenAI[OpenAI API<br/>GPT-3.5-turbo]
+    RAG -->|Stores/Retrieves| ChromaDB[ChromaDB Vector Store<br/>Embeddings]
+    RAG -->|Creates embeddings| EmbedAPI[OpenAI Embeddings API<br/>text-embedding-ada-002]
+    
+    OpenAI -->|Returns content| PE
+    PE -->|Returns content| UI
+    RAG -->|Returns context| UI
+    UI -->|Displays| User
+    
+    style UI fill:#e1f5ff
+    style PE fill:#fff4e1
+    style RAG fill:#e8f5e9
+    style OpenAI fill:#f3e5f5
+    style ChromaDB fill:#fff9c4
+    style EmbedAPI fill:#f3e5f5
 ```
 
 ## Components
