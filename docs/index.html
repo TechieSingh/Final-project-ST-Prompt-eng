@@ -3,777 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Educational Content Generator</title>
+    <title>Educational Content Generator - Documentation</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
+            font-family: Arial, sans-serif;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
+            line-height: 1.6;
         }
-        
-        header {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
         h1 {
-            color: #667eea;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            color: #666;
-            font-size: 1.2em;
-        }
-        
-        .section {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-        }
-        
-        h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #667eea;
+            color: #333;
+            border-bottom: 2px solid #333;
             padding-bottom: 10px;
         }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+        h2 {
+            color: #555;
+            margin-top: 30px;
         }
-        
-        .feature-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .feature-card h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-        
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .tech-badge {
-            background: #667eea;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-        }
-        
-        .demo-section {
-            text-align: center;
-            padding: 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 10px;
+        .section {
             margin: 30px 0;
         }
-        
+        ul {
+            margin: 10px 0;
+        }
+        a {
+            color: #0066cc;
+        }
         .btn {
             display: inline-block;
-            padding: 15px 30px;
-            background: white;
-            color: #667eea;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
             text-decoration: none;
             border-radius: 5px;
-            font-weight: bold;
-            margin: 10px;
-            transition: transform 0.3s;
+            margin: 10px 10px 10px 0;
         }
-        
         .btn:hover {
-            transform: scale(1.05);
+            background: #0052a3;
         }
-        
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid white;
-            color: white;
-        }
-        
-        .btn-secondary:hover {
-            background: white;
-            color: #667eea;
-        }
-        
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        ul li {
-            padding: 10px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-        
-        ul li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-        
-        .architecture-diagram {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: center;
-            font-family: monospace;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: white;
-            margin-top: 30px;
-        }
-        
-        .code-block {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-        }
-        
-        /* Interactive Demo Styles */
-        .demo-form {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        
-        .btn-generate {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            width: 100%;
-        }
-        
-        .btn-generate:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-        }
-        
-        .btn-generate:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .result-container {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-            display: none;
-        }
-        
-        .result-container.show {
-            display: block;
-        }
-        
-        .result-content {
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            margin-top: 15px;
-            white-space: pre-wrap;
-            line-height: 1.8;
-            max-height: 500px;
-            overflow-y: auto;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 20px;
-            display: none;
-        }
-        
-        .loading.show {
-            display: block;
-        }
-        
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .error-message {
-            background: #fee;
-            color: #c33;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 15px;
-            border-left: 4px solid #c33;
-        }
-        
-        .info-box {
-            background: #e3f2fd;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            border-left: 4px solid #2196f3;
-            font-size: 14px;
-        }
-        
-        .info-box strong {
-            color: #1976d2;
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Educational Content Generator</h1>
-            <p class="subtitle">AI-powered content creation using RAG and prompt engineering</p>
-        </header>
-        
-        <div class="section">
-            <h2>Project Overview</h2>
-            <p>
-                This system creates educational materials using RAG and prompt engineering. 
-                It can generate study guides, quiz questions, explanations, summaries, and practice problems.
-            </p>
-        </div>
-        
-        <div class="section">
-            <h2>Features</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <h3>RAG System</h3>
-                    <p>Knowledge base with vector search for accurate content generation</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Prompt Engineering</h3>
-                    <p>Optimized prompts for different educational content types</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Multiple Content Types</h3>
-                    <p>Generate study guides, quizzes, explanations, summaries, and practice problems</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Web Interface</h3>
-                    <p>Streamlit application for easy interaction</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Knowledge Base Management</h3>
-                    <p>Upload and manage educational documents (PDF, TXT)</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Customizable Output</h3>
-                    <p>Specify requirements and target audience</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2>Technical Architecture</h2>
-            <div class="architecture-diagram">
-                <pre>
-┌─────────────────────────────────────┐
-│   Streamlit Web Interface (app.py)  │
-└──────────────┬──────────────────────┘
-               │
-    ┌──────────┴──────────┐
-    │                     │
-    ▼                     ▼
-┌──────────┐      ┌──────────────────┐
-│  Prompt  │      │   RAG System     │
-│ Engineer │      │  (rag_system.py) │
-└────┬─────┘      └────────┬─────────┘
-     │                     │
-     ▼                     ▼
-┌──────────┐      ┌──────────────────┐
-│ OpenAI   │      │  ChromaDB Vector │
-│ API      │      │      Store       │
-└──────────┘      └──────────────────┘
-                </pre>
-            </div>
-            <p>
-                The system uses separate components for RAG (document retrieval) and prompt engineering (content generation). 
-                The Streamlit interface provides an intuitive way to interact with both systems.
-            </p>
-        </div>
-        
-        <div class="section">
-            <h2>Technology Stack</h2>
-            <div class="tech-stack">
-                <span class="tech-badge">Python 3.8+</span>
-                <span class="tech-badge">Streamlit</span>
-                <span class="tech-badge">LangChain</span>
-                <span class="tech-badge">OpenAI API</span>
-                <span class="tech-badge">ChromaDB</span>
-                <span class="tech-badge">PyPDF</span>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2>Core Components</h2>
-            <h3>1. Retrieval-Augmented Generation (RAG)</h3>
-            <ul>
-                <li>Vector database (ChromaDB) for similarity search</li>
-                <li>Document chunking with overlap strategy</li>
-                <li>OpenAI embeddings for semantic search</li>
-                <li>Top-k retrieval with relevance filtering</li>
-                <li>Support for PDF and TXT document formats</li>
-            </ul>
-            
-            <h3 style="margin-top: 30px;">2. Prompt Engineering</h3>
-            <ul>
-                <li>Systematic prompting strategies for each content type</li>
-                <li>Dynamic context integration from RAG system</li>
-                <li>Specialized prompts for study guides, quizzes, explanations, etc.</li>
-                <li>Edge case handling and input validation</li>
-                <li>Customizable requirements support</li>
-            </ul>
-        </div>
-        
-        <div class="section">
-            <h2>Quick Start</h2>
-            <div class="code-block">
-# Install dependencies
-pip install -r requirements.txt
+    <h1>Educational Content Generator</h1>
+    <p>Project documentation and resources</p>
 
-# Set up environment
-# Create .env file with: OPENAI_API_KEY=your_key
-
-# Initialize knowledge base
-python setup_knowledge_base.py
-
-# Run application
-streamlit run app.py
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2>🎯 Interactive Demo</h2>
-            <p style="margin-bottom: 20px;">
-                Try the Educational Content Generator right here! Enter your OpenAI API key and generate educational content instantly.
-            </p>
-            
-            <div class="info-box">
-                <strong>⚠️ Setup Required:</strong> This demo requires a backend proxy due to browser CORS restrictions. 
-                <strong>Quick Setup:</strong> Deploy <code>api_proxy.py</code> to Render/Railway (free) - see 
-                <a href="https://github.com/TechieSingh/Final-project-ST-Prompt-eng/blob/main/API_DEPLOYMENT.md" target="_blank" style="color: #1976d2; font-weight: bold;">deployment guide</a>.
-                <strong>Alternative:</strong> Use the full <a href="https://github.com/TechieSingh/Final-project-ST-Prompt-eng" target="_blank" style="color: #1976d2; font-weight: bold;">Streamlit app</a> with RAG features.
-                Your API key is only used for API calls and is never stored. Get your key from 
-                <a href="https://platform.openai.com/api-keys" target="_blank" style="color: #1976d2;">OpenAI Platform</a>.
-            </div>
-            
-            <div class="demo-form">
-                <form id="demoForm">
-                    <div class="form-group">
-                        <label for="apiKey">OpenAI API Key *</label>
-                        <input 
-                            type="password" 
-                            id="apiKey" 
-                            name="apiKey" 
-                            placeholder="sk-..." 
-                            required
-                            autocomplete="off"
-                        >
-                        <small style="color: #666; font-size: 12px;">Your key is never stored or sent to our servers</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="contentType">Content Type *</label>
-                        <select id="contentType" name="contentType" required>
-                            <option value="study_guide">Study Guide</option>
-                            <option value="quiz">Quiz Questions</option>
-                            <option value="explanation">Concept Explanation</option>
-                            <option value="summary">Summary</option>
-                            <option value="practice_problems">Practice Problems</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="topic">Topic or Subject *</label>
-                        <input 
-                            type="text" 
-                            id="topic" 
-                            name="topic" 
-                            placeholder="e.g., Photosynthesis, Python Functions, World War II" 
-                            required
-                        >
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="requirements">Additional Requirements (Optional)</label>
-                        <textarea 
-                            id="requirements" 
-                            name="requirements" 
-                            placeholder="e.g., Make it suitable for high school students, Include examples"
-                        ></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn-generate" id="generateBtn">
-                        Generate Content
-                    </button>
-                </form>
-                
-                <div class="loading" id="loading">
-                    <div class="spinner"></div>
-                    <p style="margin-top: 15px; color: #667eea;">Generating content... This may take 10-20 seconds.</p>
-                </div>
-                
-                <div class="result-container" id="resultContainer">
-                    <h3 style="color: #667eea; margin-bottom: 15px;">Generated Content</h3>
-                    <div class="result-content" id="resultContent"></div>
-                    <button 
-                        onclick="downloadContent()" 
-                        class="btn-generate" 
-                        style="margin-top: 15px; width: auto; display: inline-block;"
-                        id="downloadBtn"
-                    >
-                        Download as Text
-                    </button>
-                </div>
-                
-                <div id="errorContainer"></div>
-            </div>
-        </div>
-        
-        <div class="demo-section">
-            <h2>Try the Full Application</h2>
-            <p style="margin: 20px 0; font-size: 1.1em;">
-                For the complete experience with RAG system and knowledge base management, check out the full project on GitHub
-            </p>
-            <a href="https://github.com/TechieSingh/Final-project-ST-Prompt-eng" class="btn" target="_blank">
-                View on GitHub
-            </a>
-            <a href="https://github.com/TechieSingh/Final-project-ST-Prompt-eng/blob/main/README.md" class="btn btn-secondary" target="_blank">
-                Documentation
-            </a>
-        </div>
-        
-        <div class="section">
-            <h2>Performance</h2>
-            <ul>
-                <li>Content Generation Time: 5-10 seconds (with RAG)</li>
-                <li>Retrieval Time: 0.5-1 second for top-5 documents</li>
-                <li>Content Quality: 90%+ accuracy with quality knowledge base</li>
-                <li>Supports knowledge bases up to 1000+ documents</li>
-            </ul>
-        </div>
-        
-        <div class="section">
-            <h2>Use Cases</h2>
-            <ul>
-                <li>Teachers creating study materials for students</li>
-                <li>Students generating personalized study guides</li>
-                <li>Educational institutions developing curriculum content</li>
-                <li>Online learning platforms creating course materials</li>
-                <li>Trainers preparing educational content for workshops</li>
-            </ul>
-        </div>
-        
-        <div class="section">
-            <h2>Ethical Considerations</h2>
-            <ul>
-                <li>All generated content is marked as AI-generated</li>
-                <li>Knowledge base sources are tracked and can be cited</li>
-                <li>Content filtering for inappropriate material</li>
-                <li>Privacy considerations for user data</li>
-                <li>Transparent about system limitations</li>
-            </ul>
-        </div>
-        
-        <div class="section">
-            <h2>Documentation</h2>
-            <p>Documentation is available in the repository:</p>
-            <ul>
-                <li><strong>README.md</strong> - Setup and usage instructions</li>
-                <li><strong>docs/ARCHITECTURE.md</strong> - System architecture details</li>
-                <li><strong>docs/IMPLEMENTATION.md</strong> - Implementation specifics</li>
-                <li><strong>docs/PERFORMANCE.md</strong> - Performance metrics</li>
-            </ul>
-        </div>
-        
-        <footer>
-            <p>Educational Content Generator</p>
-        </footer>
+    <div class="section">
+        <h2>Documentation</h2>
+        <a href="../PROJECT_DOCUMENTATION.pdf" class="btn">Download PDF Documentation</a>
+        <a href="https://youtube.com/watch?v=YOUR_VIDEO_ID" class="btn">Watch Video Demo</a>
+        <a href="https://github.com/TechieSingh/Final-project-ST-Prompt-eng" class="btn">View on GitHub</a>
     </div>
-    
-    <script>
-        // API endpoint - Update this to your deployed backend URL
-        // For local testing: 'http://localhost:5000/api/generate'
-        // For production: 'https://your-backend-url.com/api/generate'
-        // Leave empty to try direct OpenAI API (may fail due to CORS)
-        const API_ENDPOINT = ''; // Set your backend URL here or leave empty for direct API
-        
-        // Content type prompts (matching the backend implementation)
-        const contentPrompts = {
-            study_guide: `Create a comprehensive study guide on the given topic. Include:
-- Key concepts and definitions
-- Important points to remember
-- Examples and applications
-- Common misconceptions to avoid
-- Study tips and strategies
 
-Format the content in a clear, organized manner with headings and bullet points.`,
-            
-            quiz: `Generate a quiz on the given topic. Include:
-- Multiple choice questions (at least 5)
-- True/False questions (at least 3)
-- Short answer questions (at least 2)
-- Provide correct answers at the end
+    <div class="section">
+        <h2>Project Overview</h2>
+        <p>This project implements RAG and prompt engineering to generate educational content. It can create study guides, quizzes, explanations, summaries, and practice problems.</p>
+    </div>
 
-Ensure questions test understanding, not just memorization.`,
-            
-            explanation: `Provide a clear, detailed explanation of the given topic. Include:
-- Definition and overview
-- Key concepts explained simply
-- Real-world examples or applications
-- Step-by-step breakdown if applicable
-- Visual descriptions or analogies
+    <div class="section">
+        <h2>Architecture</h2>
+        <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto;">
+Streamlit App (app.py)
+    │
+    ├─── Prompt Engineer (prompt_engineer.py)
+    │    └─── OpenAI API
+    │
+    └─── RAG System (rag_system.py)
+         └─── ChromaDB Vector Store
+        </pre>
+    </div>
 
-Make the explanation accessible to learners at different levels.`,
-            
-            summary: `Create a concise summary of the given topic. Include:
-- Main points and key takeaways
-- Important facts or figures
-- Key relationships or connections
-- Brief conclusion
+    <div class="section">
+        <h2>Core Components</h2>
+        <h3>RAG System</h3>
+        <ul>
+            <li>Loads PDF and text documents</li>
+            <li>Splits documents into chunks (1000 chars, 200 overlap)</li>
+            <li>Creates embeddings using OpenAI</li>
+            <li>Stores in ChromaDB vector database</li>
+            <li>Retrieves relevant chunks based on query</li>
+        </ul>
 
-Keep it concise but comprehensive.`,
-            
-            practice_problems: `Generate practice problems on the given topic. Include:
-- Problems of varying difficulty (easy, medium, hard)
-- Step-by-step solutions
-- Explanations of solution methods
-- Tips for solving similar problems
+        <h3>Prompt Engineering</h3>
+        <ul>
+            <li>Different prompts for each content type</li>
+            <li>Integrates RAG context into prompts</li>
+            <li>Handles edge cases and validation</li>
+            <li>Supports custom requirements</li>
+        </ul>
+    </div>
 
-Ensure problems are practical and help build understanding.`
-        };
-        
-        let generatedContent = '';
-        
-        document.getElementById('demoForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const apiKey = document.getElementById('apiKey').value.trim();
-            const contentType = document.getElementById('contentType').value;
-            const topic = document.getElementById('topic').value.trim();
-            const requirements = document.getElementById('requirements').value.trim();
-            
-            // Validate inputs
-            if (!apiKey || !topic) {
-                showError('Please fill in all required fields.');
-                return;
-            }
-            
-            // Show loading, hide results
-            document.getElementById('loading').classList.add('show');
-            document.getElementById('resultContainer').classList.remove('show');
-            document.getElementById('errorContainer').innerHTML = '';
-            document.getElementById('generateBtn').disabled = true;
-            
-            try {
-                // Build the prompt
-                const systemPrompt = `You are an expert educational content creator. Generate high-quality, accurate, and pedagogically sound educational materials. Always ensure that:
-1. Content is factually accurate
-2. Information is presented clearly and understandably
-3. Content is appropriate for the target audience
-4. Examples are relevant and helpful
-5. Content follows educational best practices`;
-                
-                const contentInstruction = contentPrompts[contentType];
-                const requirementsSection = requirements ? `\n\nAdditional Requirements:\n${requirements}` : '';
-                
-                const userPrompt = `${contentInstruction}
+    <div class="section">
+        <h2>Implementation Details</h2>
+        <p><strong>RAG Implementation:</strong> Uses LangChain for document loading and ChromaDB for vector storage. Documents are chunked with 1000 character chunks and 200 character overlap.</p>
+        <p><strong>Prompt Engineering:</strong> System prompts define the AI's role, content-type prompts specify what to generate, and context from RAG is integrated dynamically.</p>
+    </div>
 
-Topic: ${topic}${requirementsSection}
+    <div class="section">
+        <h2>Performance</h2>
+        <ul>
+            <li>Document upload: 15-20 seconds for 10 pages</li>
+            <li>Retrieval: 0.5-1 second</li>
+            <li>Content generation: 5-10 seconds with RAG</li>
+            <li>Content quality: 90%+ with quality knowledge base</li>
+        </ul>
+    </div>
 
-Generate the content now:`;
-                
-                let data;
-                
-                // Use backend proxy if available, otherwise try direct API
-                if (API_ENDPOINT) {
-                    // Call backend proxy
-                    const response = await fetch(API_ENDPOINT, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            api_key: apiKey,
-                            model: 'gpt-3.5-turbo',
-                            messages: [
-                                { role: 'system', content: systemPrompt },
-                                { role: 'user', content: userPrompt }
-                            ],
-                            temperature: 0.7,
-                            max_tokens: 2000
-                        })
-                    });
-                    
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        throw new Error(errorData.error || 'Failed to generate content. Please check your API key and try again.');
-                    }
-                    
-                    data = await response.json();
-                    generatedContent = data.content;
-                } else {
-                    // Try direct OpenAI API (may fail due to CORS)
-                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${apiKey}`
-                        },
-                        body: JSON.stringify({
-                            model: 'gpt-3.5-turbo',
-                            messages: [
-                                { role: 'system', content: systemPrompt },
-                                { role: 'user', content: userPrompt }
-                            ],
-                            temperature: 0.7,
-                            max_tokens: 2000
-                        })
-                    });
-                    
-                    if (!response.ok) {
-                        const errorData = await response.json().catch(() => ({}));
-                        if (response.status === 0 || response.type === 'opaque') {
-                            throw new Error('CORS error: Cannot access OpenAI API directly from browser. Please deploy the backend proxy (api_proxy.py) or use the full Streamlit application.');
-                        }
-                        throw new Error(errorData.error?.message || 'Failed to generate content. Please check your API key and try again.');
-                    }
-                    
-                    data = await response.json();
-                    generatedContent = data.choices[0].message.content;
-                }
-                
-                // Display result
-                document.getElementById('resultContent').textContent = generatedContent;
-                document.getElementById('resultContainer').classList.add('show');
-                
-            } catch (error) {
-                showError(error.message || 'An error occurred. Please try again.');
-            } finally {
-                document.getElementById('loading').classList.remove('show');
-                document.getElementById('generateBtn').disabled = false;
-            }
-        });
-        
-        function showError(message) {
-            const errorContainer = document.getElementById('errorContainer');
-            errorContainer.innerHTML = `<div class="error-message">${message}</div>`;
-        }
-        
-        function downloadContent() {
-            if (!generatedContent) return;
-            
-            const contentType = document.getElementById('contentType').value;
-            const topic = document.getElementById('topic').value.trim().replace(/\s+/g, '_');
-            const filename = `${contentType}_${topic}.txt`;
-            
-            const blob = new Blob([generatedContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-    </script>
+    <div class="section">
+        <h2>Challenges and Solutions</h2>
+        <p><strong>Challenge:</strong> Finding optimal chunk size for retrieval</p>
+        <p><strong>Solution:</strong> Tested different sizes, settled on 1000 chars with 200 overlap</p>
+        <br>
+        <p><strong>Challenge:</strong> Integrating RAG context effectively</p>
+        <p><strong>Solution:</strong> Clear formatting with source attribution and explicit instructions to use context</p>
+    </div>
+
+    <div class="section">
+        <h2>Future Improvements</h2>
+        <ul>
+            <li>Add more content types (lesson plans, flashcards)</li>
+            <li>Improve RAG with query expansion and re-ranking</li>
+            <li>Add PDF/DOCX export</li>
+            <li>Fine-tune model for educational content</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Ethical Considerations</h2>
+        <ul>
+            <li>All content marked as AI-generated</li>
+            <li>Sources tracked and can be cited</li>
+            <li>Content filtering for inappropriate material</li>
+            <li>No persistent user data storage</li>
+            <li>Transparent about limitations</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Additional Resources</h2>
+        <ul>
+            <li><a href="ARCHITECTURE.md">Architecture Details</a></li>
+            <li><a href="IMPLEMENTATION.md">Implementation Guide</a></li>
+            <li><a href="PERFORMANCE.md">Performance Metrics</a></li>
+            <li><a href="CHALLENGES_SOLUTIONS.md">Challenges & Solutions</a></li>
+            <li><a href="PROJECT_DOCUMENTATION.md">Complete Documentation</a></li>
+        </ul>
+    </div>
+
+    <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #666;">
+        <p>Educational Content Generator - Generative AI Project</p>
+    </footer>
 </body>
 </html>
-

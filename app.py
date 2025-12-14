@@ -14,7 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# session state stuff
+# Initialize session state
 if 'rag_system' not in st.session_state:
     st.session_state.rag_system = None
 if 'prompt_engineer' not in st.session_state:
@@ -56,10 +56,10 @@ def main():
             st.error("API Key not found")
         
         if st.button("Initialize Systems", type="primary"):
-            with st.spinner("Setting things up..."):
-                if initialize_systems():
-                    st.success("Ready to go!")
-                    st.rerun()
+        with st.spinner("Initializing..."):
+            if initialize_systems():
+                st.success("Ready!")
+                st.rerun()
         
         st.divider()
         
@@ -185,34 +185,7 @@ def main():
                 )
     
     st.divider()
-    st.header("About This Project")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.subheader("RAG System")
-        st.markdown("""
-        - Vector Database: ChromaDB for similarity search
-        - Document Chunking: Recursive splitting with overlap
-        - Embeddings: OpenAI embeddings for semantic search
-        - Retrieval: Top-k similarity search with filtering
-        """)
-    
-    with col2:
-        st.subheader("Prompt Engineering")
-        st.markdown("""
-        - Systematic Strategies: Specialized prompts for each content type
-        - Context Management: Dynamic context integration from RAG
-        - Error Handling: Edge case detection and handling
-        - Customization: User-defined requirements support
-        """)
-    
-    st.divider()
-    st.markdown("""
-    <div style='text-align: center; color: gray;'>
-        <p>Educational Content Generator</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("**Educational Content Generator** - Uses RAG and prompt engineering to generate educational materials.")
 
 if __name__ == "__main__":
     main()

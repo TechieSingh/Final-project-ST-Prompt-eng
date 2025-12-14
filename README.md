@@ -1,108 +1,64 @@
 # Educational Content Generator
 
-A tool that creates educational content using RAG and prompt engineering. Built for a generative AI course project.
+A simple tool that generates educational content using RAG and prompt engineering.
 
 ## What it does
 
-This project generates different types of educational materials:
-- Study guides
-- Quiz questions
-- Concept explanations
-- Summaries
-- Practice problems
+Generates educational materials like study guides, quizzes, explanations, summaries, and practice problems.
 
 ## How it works
 
-### RAG System
-Uses ChromaDB to store and search through educational documents. When you ask for content on a topic, it finds relevant info from your knowledge base and uses that to generate more accurate content.
-
-### Prompt Engineering
-Different prompts for each content type. The system knows how to ask the AI to create a study guide vs a quiz, for example.
-
-## Features
-
-- Web interface (Streamlit)
-- Upload your own documents to the knowledge base
-- Generate different types of content
-- Uses RAG to make content more accurate
-- Download generated content
+The system uses RAG to search through uploaded documents and prompt engineering to generate different types of content. You can upload PDFs or text files to build a knowledge base, then generate content based on those documents.
 
 ## Setup
 
-### Requirements
-- Python 3.8 or higher
-- OpenAI API key
-
-### Installation
-
-1. Clone the repo:
-```bash
-git clone https://github.com/TechieSingh/Final-project-ST-Prompt-eng.git
-cd Final-project-ST-Prompt-eng
-```
-
-2. Install dependencies:
+1. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Create a `.env` file in the root directory:
+2. Create a `.env` file:
 ```
 OPENAI_API_KEY=your_api_key_here
 ```
 
-4. Initialize the knowledge base (adds some sample docs):
+3. Initialize knowledge base (optional):
 ```bash
 python setup_knowledge_base.py
 ```
 
-5. Run the app:
+4. Run the app:
 ```bash
 streamlit run app.py
 ```
 
-The app will open at `http://localhost:8501`
+## Usage
+
+1. Run `streamlit run app.py`
+2. Click "Initialize Systems" in the sidebar
+3. Upload documents if you want (optional)
+4. Select content type and enter topic
+5. Click generate
 
 ## Project Structure
 
-```
-Final_Project/
-├── app.py                      # Main app
-├── rag_system.py              # RAG stuff
-├── prompt_engineer.py         # Prompt handling
-├── knowledge_base/            # Your documents go here
-├── vector_store/             # Vector DB (auto-generated)
-├── setup_knowledge_base.py   # Setup script
-├── tests/                    # Tests
-├── examples/                 # Example outputs
-├── docs/                     # Documentation
-└── web_page/                 # Web page
-```
+- `app.py` - Main Streamlit app
+- `rag_system.py` - Handles document storage and retrieval
+- `prompt_engineer.py` - Creates prompts and calls OpenAI API
+- `knowledge_base/` - Upload your documents here
+- `tests/` - Test files
+- `docs/` - Documentation
 
-## Usage
+## Documentation
 
-1. Start the app: `streamlit run app.py`
-2. Click "Initialize Systems" in the sidebar
-3. (Optional) Upload documents to the knowledge base
-4. Select content type
-5. Enter your topic
-6. Generate!
+- [Project Documentation PDF](PROJECT_DOCUMENTATION.pdf) - Complete documentation
+- [Video Demo](https://youtube.com/watch?v=YOUR_VIDEO_ID) - 10-minute demonstration
+- [Web Page](web_page/index.html) - Project showcase
+- [Full Documentation](docs/PROJECT_DOCUMENTATION.md) - Detailed docs
 
 ## Testing
 
-Run the tests:
 ```bash
 python tests/test_rag.py
 python tests/test_prompts.py
 ```
-
-## Documentation
-
-Check the `docs/` folder for more details on architecture, implementation, and performance.
-
-## Notes
-
-- Generated content is marked as AI-generated
-- Sources are tracked and can be cited
-- Basic content filtering is implemented
-- Privacy considerations for user data

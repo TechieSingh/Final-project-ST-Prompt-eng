@@ -139,7 +139,7 @@ Generate the content now:"""
         if len(user_input) > 2000:
             return "Input is too long. Please provide a more concise topic (under 2000 characters)."
         
-        # basic content filter
+        # Basic content filter
         inappropriate_keywords = ["violence", "illegal", "harmful"]
         if any(keyword in user_input.lower() for keyword in inappropriate_keywords):
             return "Please ensure your topic is appropriate for educational content."

@@ -1,0 +1,11 @@
+# Optional dependencies for PDF conversion
+# Install these if you want to use the convert_to_pdf.py script
+
+markdown2>=2.4.0
+weasyprint>=60.0
+
+# Note: For best PDF quality, use Pandoc instead:
+# - Install Pandoc: https://pandoc.org/installing.html
+# - Install LaTeX: MiKTeX (Windows) or TeX Live (Linux/Mac)
+# - Then use: pandoc docs/PDF_DOCUMENTATION_TEMPLATE.md -o PROJECT_DOCUMENTATION.pdf --pdf-engine=xelatex --toc
+
