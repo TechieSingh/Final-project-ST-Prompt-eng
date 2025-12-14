@@ -14,9 +14,13 @@ Features:
 import streamlit as st
 import os
 import tempfile
+import warnings
 from dotenv import load_dotenv
 from rag_system import RAGSystem
 from prompt_engineer import PromptEngineer
+
+# Suppress Streamlit secrets warning if no secrets file exists
+warnings.filterwarnings("ignore", category=UserWarning, module="streamlit")
 
 load_dotenv()
 
@@ -43,9 +47,14 @@ def initialize_systems():
         bool: True if initialization successful, False otherwise
     """
     # Try to get API key from Streamlit secrets (for Streamlit Cloud) or environment variable
+    api_key = None
     try:
-        api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
-    except:
+        if hasattr(st, 'secrets') and st.secrets:
+            api_key = st.secrets.get("OPENAI_API_KEY", None)
+    except (AttributeError, FileNotFoundError, KeyError):
+        pass
+    
+    if not api_key:
         api_key = os.getenv("OPENAI_API_KEY")
     
     if not api_key:
