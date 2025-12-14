@@ -252,5 +252,3 @@ Streamlit App (app.py)
 
 - Repository: https://github.com/TechieSingh/Final-project-ST-Prompt-eng
 - Web Page: docs/index.html
-- Video Script: VIDEO_SCRIPT.md
-- Submission Checklist: SUBMISSION_CHECKLIST.md

@@ -42,10 +42,14 @@ def initialize_systems():
     Returns:
         bool: True if initialization successful, False otherwise
     """
-    api_key = os.getenv("OPENAI_API_KEY")
+    # Try to get API key from Streamlit secrets (for Streamlit Cloud) or environment variable
+    try:
+        api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
+    except:
+        api_key = os.getenv("OPENAI_API_KEY")
     
     if not api_key:
-        st.error("OpenAI API key not found. Please set OPENAI_API_KEY in your .env file.")
+        st.error("OpenAI API key not found. Please set OPENAI_API_KEY in your .env file or Streamlit secrets.")
         return False
     
     try:
@@ -68,7 +72,12 @@ def main():
     with st.sidebar:
         st.header("Configuration")
         
-        api_key = os.getenv("OPENAI_API_KEY")
+        # Try to get API key from Streamlit secrets (for Streamlit Cloud) or environment variable
+        try:
+            api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
+        except:
+            api_key = os.getenv("OPENAI_API_KEY")
+        
         if api_key:
             st.success("API Key configured")
         else:
