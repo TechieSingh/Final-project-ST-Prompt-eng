@@ -1,0 +1,64 @@
+QUIZ: Python Programming Basics
+
+Multiple Choice Questions:
+
+1. What is the correct way to define a function in Python?
+   a) function my_function():
+   b) def my_function():
+   c) define my_function():
+   d) func my_function():
+   Answer: b) def my_function():
+
+2. Which of the following is NOT a Python data type?
+   a) List
+   b) Dictionary
+   c) Array
+   d) Tuple
+   Answer: c) Array (Python uses lists, not arrays)
+
+3. What does the following code output?
+   x = [1, 2, 3]
+   print(x[1])
+   a) 1
+   b) 2
+   c) 3
+   d) Error
+   Answer: b) 2 (indexing starts at 0)
+
+4. Which keyword is used to handle exceptions in Python?
+   a) try-except
+   b) catch
+   c) error
+   d) handle
+   Answer: a) try-except
+
+5. What is the result of: "Hello" + "World"?
+   a) "Hello World"
+   b) "HelloWorld"
+   c) Error
+   d) "Hello" + "World"
+   Answer: b) "HelloWorld"
+
+True/False Questions:
+
+1. Python is a compiled language.
+   Answer: False - Python is an interpreted language.
+
+2. Lists in Python are mutable.
+   Answer: True - Lists can be modified after creation.
+
+3. Python uses indentation to define code blocks.
+   Answer: True - Python uses indentation instead of braces.
+
+Short Answer Questions:
+
+1. Explain the difference between a list and a tuple in Python.
+   Answer: Lists are mutable (can be changed) and use square brackets []. 
+   Tuples are immutable (cannot be changed) and use parentheses (). 
+   Lists are typically used for collections that need to be modified, 
+   while tuples are used for fixed collections.
+
+2. What is a Python dictionary and provide an example?
+   Answer: A dictionary is a collection of key-value pairs, unordered and mutable. 
+   Example: student = {"name": "John", "age": 20, "grade": "A"}
+

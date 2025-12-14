@@ -1,0 +1,45 @@
+Biology Fundamentals
+
+Cell Structure and Function
+
+Cells are the basic units of life. All living organisms are composed of cells. There are two main types of cells: prokaryotic and eukaryotic.
+
+Prokaryotic cells (bacteria) lack a nucleus and membrane-bound organelles. Eukaryotic cells (plants, animals, fungi) have a nucleus and various organelles.
+
+Key organelles:
+- Nucleus: Contains DNA and controls cell activities
+- Mitochondria: Powerhouse of the cell, produces ATP
+- Chloroplasts: Site of photosynthesis in plant cells
+- Endoplasmic Reticulum: Protein and lipid synthesis
+- Golgi Apparatus: Modifies and packages proteins
+- Ribosomes: Protein synthesis
+
+DNA and Genetics
+
+DNA (Deoxyribonucleic Acid) is the genetic material that carries instructions for development, functioning, and reproduction.
+
+DNA structure:
+- Double helix shape
+- Composed of nucleotides (A, T, G, C)
+- Base pairing: A with T, G with C
+
+Genes are segments of DNA that code for specific proteins. The process of gene expression involves transcription (DNA to RNA) and translation (RNA to protein).
+
+Evolution
+
+Evolution is the process by which species change over time through natural selection. Key concepts:
+- Natural selection: Organisms with advantageous traits survive and reproduce
+- Genetic variation: Differences in DNA among individuals
+- Adaptation: Traits that help organisms survive in their environment
+- Speciation: Formation of new species
+
+Ecosystems
+
+An ecosystem consists of living organisms and their physical environment. Components include:
+- Producers: Plants that make food through photosynthesis
+- Consumers: Animals that eat other organisms
+- Decomposers: Organisms that break down dead matter
+- Abiotic factors: Non-living components (water, soil, temperature)
+
+Food chains and food webs show energy flow through ecosystems. Energy flows from producers to consumers, with only about 10% of energy transferred between trophic levels.
+

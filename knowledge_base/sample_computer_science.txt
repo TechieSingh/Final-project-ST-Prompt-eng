@@ -1,0 +1,61 @@
+Computer Science Fundamentals
+
+Programming Concepts
+
+Programming is the process of creating instructions for computers to execute. Key concepts include:
+
+Variables: Storage locations for data values
+Data Types: Categories of data (integers, strings, booleans, etc.)
+Control Structures: Decision-making (if/else) and repetition (loops)
+Functions: Reusable blocks of code that perform specific tasks
+Algorithms: Step-by-step procedures for solving problems
+
+Data Structures
+
+Arrays/Lists: Ordered collections of elements
+Stacks: Last-In-First-Out (LIFO) data structure
+Queues: First-In-First-Out (FIFO) data structure
+Trees: Hierarchical data structures with nodes
+Hash Tables: Key-value pairs for fast lookups
+
+Algorithms
+
+Common algorithm types:
+- Sorting: Arranging data in order (bubble sort, quicksort, mergesort)
+- Searching: Finding elements (linear search, binary search)
+- Graph algorithms: Traversing networks (BFS, DFS)
+- Dynamic programming: Solving problems by breaking into subproblems
+
+Time Complexity: Measures how algorithm runtime grows with input size
+Space Complexity: Measures memory usage of algorithms
+
+Software Engineering
+
+Software Development Life Cycle (SDLC):
+1. Requirements gathering
+2. Design
+3. Implementation
+4. Testing
+5. Deployment
+6. Maintenance
+
+Best Practices:
+- Code documentation
+- Version control (Git)
+- Testing (unit tests, integration tests)
+- Code reviews
+- Agile methodologies
+
+Database Systems
+
+Databases store and manage data efficiently. Types:
+- Relational databases: Structured data in tables (SQL)
+- NoSQL databases: Flexible data models (MongoDB, Cassandra)
+
+Key concepts:
+- Tables: Collections of related data
+- Primary keys: Unique identifiers
+- Foreign keys: References to other tables
+- Queries: Requests for data
+- Transactions: Atomic operations
+
