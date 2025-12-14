@@ -15,12 +15,17 @@ import streamlit as st
 import os
 import tempfile
 import warnings
+import logging
+
+# Suppress non-critical warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", message=".*torch.classes.*")
+logging.getLogger("chromadb").setLevel(logging.ERROR)
+logging.getLogger("httpx").setLevel(logging.WARNING)
+
 from dotenv import load_dotenv
 from rag_system import RAGSystem
 from prompt_engineer import PromptEngineer
-
-# Suppress Streamlit secrets warning if no secrets file exists
-warnings.filterwarnings("ignore", category=UserWarning, module="streamlit")
 
 load_dotenv()
 
@@ -46,16 +51,14 @@ def initialize_systems():
     Returns:
         bool: True if initialization successful, False otherwise
     """
-    # Try to get API key from Streamlit secrets (for Streamlit Cloud) or environment variable
-    api_key = None
-    try:
-        if hasattr(st, 'secrets') and st.secrets:
-            api_key = st.secrets.get("OPENAI_API_KEY", None)
-    except (AttributeError, FileNotFoundError, KeyError):
-        pass
-    
+    # Get API key from environment variable (for local) or Streamlit secrets (for cloud)
+    api_key = os.getenv("OPENAI_API_KEY")
+    # Only try Streamlit secrets if env var not found (avoids warning when running locally)
     if not api_key:
-        api_key = os.getenv("OPENAI_API_KEY")
+        try:
+            api_key = st.secrets.get("OPENAI_API_KEY", None)
+        except (AttributeError, FileNotFoundError, KeyError, Exception):
+            pass
     
     if not api_key:
         st.error("OpenAI API key not found. Please set OPENAI_API_KEY in your .env file or Streamlit secrets.")
@@ -81,11 +84,14 @@ def main():
     with st.sidebar:
         st.header("Configuration")
         
-        # Try to get API key from Streamlit secrets (for Streamlit Cloud) or environment variable
-        try:
-            api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
-        except:
-            api_key = os.getenv("OPENAI_API_KEY")
+        # Get API key from environment variable (for local) or Streamlit secrets (for cloud)
+        api_key = os.getenv("OPENAI_API_KEY")
+        # Only try Streamlit secrets if env var not found (avoids warning when running locally)
+        if not api_key:
+            try:
+                api_key = st.secrets.get("OPENAI_API_KEY", None)
+            except (AttributeError, FileNotFoundError, KeyError, Exception):
+                pass
         
         if api_key:
             st.success("API Key configured")
