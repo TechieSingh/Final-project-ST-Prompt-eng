@@ -25,23 +25,23 @@
 
 ### 1.1 Project Overview
 
-The Educational Content Generator is a sophisticated generative AI system designed to create high-quality educational materials using Retrieval-Augmented Generation (RAG) and advanced prompt engineering techniques. The system addresses the real-world need for efficient, accurate, and customizable educational content creation.
+This project is an educational content generator that uses RAG and prompt engineering to create study materials. The idea was to build something that could help teachers and students create quality educational content quickly. It uses AI to generate study guides, quizzes, explanations, summaries, and practice problems.
 
 ### 1.2 Core Components Implemented
 
-This project implements **two core components** as required:
+I implemented **two core components** as required:
 
 1. **Retrieval-Augmented Generation (RAG)**
-   - Built a knowledge base using ChromaDB vector database
-   - Implemented document chunking and embedding strategies
-   - Created effective retrieval and ranking mechanisms
-   - Supports multiple document formats (PDF, TXT)
+   - Built a knowledge base using ChromaDB (vector database)
+   - Document chunking and embedding
+   - Retrieval system that finds relevant info
+   - Supports PDF and TXT files
 
 2. **Prompt Engineering**
-   - Designed systematic prompting strategies for different content types
-   - Implemented context management for coherent generation
-   - Created specialized user interaction flows
-   - Handles edge cases and errors gracefully
+   - Different prompts for each content type
+   - Context management to use RAG info effectively
+   - User-friendly interface
+   - Handles errors and edge cases
 
 ### 1.3 Application Type
 
@@ -94,12 +94,12 @@ This project implements **two core components** as required:
 
 **File**: `rag_system.py`
 
-**Responsibilities**:
-- Document loading and processing
-- Text chunking with optimal strategy
-- Vector embedding generation
-- Similarity search and retrieval
-- Knowledge base management
+**What it does**:
+- Loads and processes documents
+- Splits text into chunks (1000 chars with 200 overlap)
+- Creates embeddings for semantic search
+- Finds similar documents when you search
+- Manages the knowledge base
 
 **Key Technologies**:
 - ChromaDB for vector storage
@@ -111,12 +111,12 @@ This project implements **two core components** as required:
 
 **File**: `prompt_engineer.py`
 
-**Responsibilities**:
-- Systematic prompt generation
-- Content-type-specific prompts
-- Context integration from RAG
-- Edge case handling
-- LLM interaction management
+**What it does**:
+- Builds prompts for different content types
+- Each content type has its own prompt template
+- Takes RAG context and adds it to prompts
+- Handles edge cases (empty input, too long, etc.)
+- Talks to the OpenAI API
 
 **Key Features**:
 - Base system prompts
@@ -128,11 +128,11 @@ This project implements **two core components** as required:
 
 **File**: `app.py`
 
-**Responsibilities**:
-- User interface
-- Content generation workflow
-- Knowledge base management
-- Result display and download
+**What it does**:
+- The web interface users interact with
+- Handles the content generation flow
+- Lets users upload and manage documents
+- Shows results and lets you download them
 
 **Technologies**: Streamlit
 

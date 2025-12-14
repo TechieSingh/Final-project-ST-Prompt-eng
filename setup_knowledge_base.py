@@ -10,6 +10,7 @@ def setup_sample_knowledge_base():
     
     rag = RAGSystem(api_key=os.getenv("OPENAI_API_KEY"))
     
+    # some sample docs to get started
     sample_documents = [
         {
             "content": """

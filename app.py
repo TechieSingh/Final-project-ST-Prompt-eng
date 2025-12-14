@@ -14,6 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# session state stuff
 if 'rag_system' not in st.session_state:
     st.session_state.rag_system = None
 if 'prompt_engineer' not in st.session_state:
@@ -38,7 +39,7 @@ def initialize_systems():
         st.session_state.knowledge_base_initialized = True
         return True
     except Exception as e:
-        st.error(f"Error initializing systems: {str(e)}")
+        st.error(f"Something went wrong: {str(e)}")
         return False
 
 def main():
@@ -55,9 +56,9 @@ def main():
             st.error("API Key not found")
         
         if st.button("Initialize Systems", type="primary"):
-            with st.spinner("Initializing..."):
+            with st.spinner("Setting things up..."):
                 if initialize_systems():
-                    st.success("Systems initialized!")
+                    st.success("Ready to go!")
                     st.rerun()
         
         st.divider()
@@ -74,7 +75,7 @@ def main():
             )
             
             if uploaded_files and st.button("Add to Knowledge Base"):
-                with st.spinner("Processing documents..."):
+                with st.spinner("Processing..."):
                     for uploaded_file in uploaded_files:
                         with tempfile.NamedTemporaryFile(delete=False, suffix=f".{uploaded_file.name.split('.')[-1]}") as tmp_file:
                             tmp_file.write(uploaded_file.getvalue())
@@ -85,13 +86,13 @@ def main():
                             st.session_state.rag_system.add_documents(docs)
                             st.success(f"Added {uploaded_file.name}")
                         except Exception as e:
-                            st.error(f"Error processing {uploaded_file.name}: {str(e)}")
+                            st.error(f"Couldn't process {uploaded_file.name}: {str(e)}")
                         finally:
                             os.unlink(tmp_path)
             
             if st.button("Clear Knowledge Base", type="secondary"):
                 st.session_state.rag_system.clear_knowledge_base()
-                st.success("Knowledge base cleared!")
+                st.success("Cleared!")
                 st.rerun()
         else:
             st.info("Initialize systems first")
@@ -143,7 +144,7 @@ def main():
             st.warning(error_msg)
             return
         
-        with st.spinner("Generating content..."):
+        with st.spinner("Working on it..."):
             if use_rag:
                 result = st.session_state.prompt_engineer.generate_with_rag(
                     content_type=content_type,

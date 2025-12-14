@@ -18,6 +18,7 @@ class RAGSystem:
             openai_api_key=api_key or os.getenv("OPENAI_API_KEY")
         )
         
+        # chunking settings - found these work pretty well after some testing
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=1000,
             chunk_overlap=200,
@@ -35,6 +36,7 @@ class RAGSystem:
                 embedding_function=self.embeddings
             )
         except Exception:
+            # if it doesn't exist, create a new one
             self.vector_store = Chroma(
                 persist_directory=self.persist_directory,
                 embedding_function=self.embeddings
@@ -46,7 +48,7 @@ class RAGSystem:
         elif file_path.endswith('.txt'):
             loader = TextLoader(file_path, encoding='utf-8')
         else:
-            raise ValueError(f"Unsupported file type: {file_path}")
+            raise ValueError(f"Can't handle this file type: {file_path}")
         
         documents = loader.load()
         return documents
@@ -67,6 +69,7 @@ class RAGSystem:
             return []
         
         docs = self.vector_store.similarity_search_with_score(query, k=k)
+        # filter out stuff that's not really relevant
         relevant_docs = [doc for doc, score in docs if score < 1.5]
         
         return [doc for doc, _ in docs[:k]]
@@ -84,6 +87,7 @@ class RAGSystem:
         return "\n".join(context_parts)
     
     def clear_knowledge_base(self):
+        # wipe everything and start fresh
         if os.path.exists(self.persist_directory):
             shutil.rmtree(self.persist_directory)
         os.makedirs(self.persist_directory, exist_ok=True)
