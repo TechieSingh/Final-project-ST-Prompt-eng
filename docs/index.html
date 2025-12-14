@@ -174,6 +174,144 @@
             margin: 20px 0;
             font-family: 'Courier New', monospace;
         }
+        
+        /* Interactive Demo Styles */
+        .demo-form {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .btn-generate {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            width: 100%;
+        }
+        
+        .btn-generate:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-generate:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+        
+        .result-container.show {
+            display: block;
+        }
+        
+        .result-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            white-space: pre-wrap;
+            line-height: 1.8;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border-left: 4px solid #c33;
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+            font-size: 14px;
+        }
+        
+        .info-box strong {
+            color: #1976d2;
+        }
     </style>
 </head>
 <body>
@@ -300,10 +438,98 @@ streamlit run app.py
             </div>
         </div>
         
+        <div class="section">
+            <h2>🎯 Interactive Demo</h2>
+            <p style="margin-bottom: 20px;">
+                Try the Educational Content Generator right here! Enter your OpenAI API key and generate educational content instantly.
+            </p>
+            
+            <div class="info-box">
+                <strong>⚠️ Setup Required:</strong> This demo requires a backend proxy due to browser CORS restrictions. 
+                <strong>Quick Setup:</strong> Deploy <code>api_proxy.py</code> to Render/Railway (free) - see 
+                <a href="https://github.com/TechieSingh/Final-project-ST-Prompt-eng/blob/main/API_DEPLOYMENT.md" target="_blank" style="color: #1976d2; font-weight: bold;">deployment guide</a>.
+                <strong>Alternative:</strong> Use the full <a href="https://github.com/TechieSingh/Final-project-ST-Prompt-eng" target="_blank" style="color: #1976d2; font-weight: bold;">Streamlit app</a> with RAG features.
+                Your API key is only used for API calls and is never stored. Get your key from 
+                <a href="https://platform.openai.com/api-keys" target="_blank" style="color: #1976d2;">OpenAI Platform</a>.
+            </div>
+            
+            <div class="demo-form">
+                <form id="demoForm">
+                    <div class="form-group">
+                        <label for="apiKey">OpenAI API Key *</label>
+                        <input 
+                            type="password" 
+                            id="apiKey" 
+                            name="apiKey" 
+                            placeholder="sk-..." 
+                            required
+                            autocomplete="off"
+                        >
+                        <small style="color: #666; font-size: 12px;">Your key is never stored or sent to our servers</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contentType">Content Type *</label>
+                        <select id="contentType" name="contentType" required>
+                            <option value="study_guide">Study Guide</option>
+                            <option value="quiz">Quiz Questions</option>
+                            <option value="explanation">Concept Explanation</option>
+                            <option value="summary">Summary</option>
+                            <option value="practice_problems">Practice Problems</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="topic">Topic or Subject *</label>
+                        <input 
+                            type="text" 
+                            id="topic" 
+                            name="topic" 
+                            placeholder="e.g., Photosynthesis, Python Functions, World War II" 
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="requirements">Additional Requirements (Optional)</label>
+                        <textarea 
+                            id="requirements" 
+                            name="requirements" 
+                            placeholder="e.g., Make it suitable for high school students, Include examples"
+                        ></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-generate" id="generateBtn">
+                        Generate Content
+                    </button>
+                </form>
+                
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 15px; color: #667eea;">Generating content... This may take 10-20 seconds.</p>
+                </div>
+                
+                <div class="result-container" id="resultContainer">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">Generated Content</h3>
+                    <div class="result-content" id="resultContent"></div>
+                    <button 
+                        onclick="downloadContent()" 
+                        class="btn-generate" 
+                        style="margin-top: 15px; width: auto; display: inline-block;"
+                        id="downloadBtn"
+                    >
+                        Download as Text
+                    </button>
+                </div>
+                
+                <div id="errorContainer"></div>
+            </div>
+        </div>
+        
         <div class="demo-section">
-            <h2>Try It Out</h2>
+            <h2>Try the Full Application</h2>
             <p style="margin: 20px 0; font-size: 1.1em;">
-                Check out the project on GitHub
+                For the complete experience with RAG system and knowledge base management, check out the full project on GitHub
             </p>
             <a href="https://github.com/TechieSingh/Final-project-ST-Prompt-eng" class="btn" target="_blank">
                 View on GitHub
@@ -360,6 +586,194 @@ streamlit run app.py
             <p>Educational Content Generator</p>
         </footer>
     </div>
+    
+    <script>
+        // API endpoint - Update this to your deployed backend URL
+        // For local testing: 'http://localhost:5000/api/generate'
+        // For production: 'https://your-backend-url.com/api/generate'
+        // Leave empty to try direct OpenAI API (may fail due to CORS)
+        const API_ENDPOINT = ''; // Set your backend URL here or leave empty for direct API
+        
+        // Content type prompts (matching the backend implementation)
+        const contentPrompts = {
+            study_guide: `Create a comprehensive study guide on the given topic. Include:
+- Key concepts and definitions
+- Important points to remember
+- Examples and applications
+- Common misconceptions to avoid
+- Study tips and strategies
+
+Format the content in a clear, organized manner with headings and bullet points.`,
+            
+            quiz: `Generate a quiz on the given topic. Include:
+- Multiple choice questions (at least 5)
+- True/False questions (at least 3)
+- Short answer questions (at least 2)
+- Provide correct answers at the end
+
+Ensure questions test understanding, not just memorization.`,
+            
+            explanation: `Provide a clear, detailed explanation of the given topic. Include:
+- Definition and overview
+- Key concepts explained simply
+- Real-world examples or applications
+- Step-by-step breakdown if applicable
+- Visual descriptions or analogies
+
+Make the explanation accessible to learners at different levels.`,
+            
+            summary: `Create a concise summary of the given topic. Include:
+- Main points and key takeaways
+- Important facts or figures
+- Key relationships or connections
+- Brief conclusion
+
+Keep it concise but comprehensive.`,
+            
+            practice_problems: `Generate practice problems on the given topic. Include:
+- Problems of varying difficulty (easy, medium, hard)
+- Step-by-step solutions
+- Explanations of solution methods
+- Tips for solving similar problems
+
+Ensure problems are practical and help build understanding.`
+        };
+        
+        let generatedContent = '';
+        
+        document.getElementById('demoForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const contentType = document.getElementById('contentType').value;
+            const topic = document.getElementById('topic').value.trim();
+            const requirements = document.getElementById('requirements').value.trim();
+            
+            // Validate inputs
+            if (!apiKey || !topic) {
+                showError('Please fill in all required fields.');
+                return;
+            }
+            
+            // Show loading, hide results
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('resultContainer').classList.remove('show');
+            document.getElementById('errorContainer').innerHTML = '';
+            document.getElementById('generateBtn').disabled = true;
+            
+            try {
+                // Build the prompt
+                const systemPrompt = `You are an expert educational content creator. Generate high-quality, accurate, and pedagogically sound educational materials. Always ensure that:
+1. Content is factually accurate
+2. Information is presented clearly and understandably
+3. Content is appropriate for the target audience
+4. Examples are relevant and helpful
+5. Content follows educational best practices`;
+                
+                const contentInstruction = contentPrompts[contentType];
+                const requirementsSection = requirements ? `\n\nAdditional Requirements:\n${requirements}` : '';
+                
+                const userPrompt = `${contentInstruction}
+
+Topic: ${topic}${requirementsSection}
+
+Generate the content now:`;
+                
+                let data;
+                
+                // Use backend proxy if available, otherwise try direct API
+                if (API_ENDPOINT) {
+                    // Call backend proxy
+                    const response = await fetch(API_ENDPOINT, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            api_key: apiKey,
+                            model: 'gpt-3.5-turbo',
+                            messages: [
+                                { role: 'system', content: systemPrompt },
+                                { role: 'user', content: userPrompt }
+                            ],
+                            temperature: 0.7,
+                            max_tokens: 2000
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'Failed to generate content. Please check your API key and try again.');
+                    }
+                    
+                    data = await response.json();
+                    generatedContent = data.content;
+                } else {
+                    // Try direct OpenAI API (may fail due to CORS)
+                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${apiKey}`
+                        },
+                        body: JSON.stringify({
+                            model: 'gpt-3.5-turbo',
+                            messages: [
+                                { role: 'system', content: systemPrompt },
+                                { role: 'user', content: userPrompt }
+                            ],
+                            temperature: 0.7,
+                            max_tokens: 2000
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({}));
+                        if (response.status === 0 || response.type === 'opaque') {
+                            throw new Error('CORS error: Cannot access OpenAI API directly from browser. Please deploy the backend proxy (api_proxy.py) or use the full Streamlit application.');
+                        }
+                        throw new Error(errorData.error?.message || 'Failed to generate content. Please check your API key and try again.');
+                    }
+                    
+                    data = await response.json();
+                    generatedContent = data.choices[0].message.content;
+                }
+                
+                // Display result
+                document.getElementById('resultContent').textContent = generatedContent;
+                document.getElementById('resultContainer').classList.add('show');
+                
+            } catch (error) {
+                showError(error.message || 'An error occurred. Please try again.');
+            } finally {
+                document.getElementById('loading').classList.remove('show');
+                document.getElementById('generateBtn').disabled = false;
+            }
+        });
+        
+        function showError(message) {
+            const errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerHTML = `<div class="error-message">${message}</div>`;
+        }
+        
+        function downloadContent() {
+            if (!generatedContent) return;
+            
+            const contentType = document.getElementById('contentType').value;
+            const topic = document.getElementById('topic').value.trim().replace(/\s+/g, '_');
+            const filename = `${contentType}_${topic}.txt`;
+            
+            const blob = new Blob([generatedContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
 </body>
 </html>
 
