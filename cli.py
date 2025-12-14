@@ -55,9 +55,13 @@ def main():
         
         if choice == "1":
             # Upload document
-            file_path = input("\nEnter path to PDF or TXT file: ").strip().strip('"')
+            print("\n💡 Tip: You can use sample files from the knowledge_base folder:")
+            print("   - knowledge_base\\sample_biology.txt")
+            print("   - knowledge_base\\sample_computer_science.txt")
+            file_path = input("\nEnter path to PDF or TXT file: ").strip().strip('"').strip("'")
             if not os.path.exists(file_path):
                 print(f"❌ File not found: {file_path}")
+                print("💡 Make sure the path is correct. You can copy-paste the full path.")
                 continue
             
             try:
@@ -68,8 +72,21 @@ def main():
                 print("📝 Adding to knowledge base...")
                 rag_system.add_documents(documents)
                 print("✅ Document added to knowledge base!")
+            except FileNotFoundError:
+                print(f"❌ Error: File not found: {file_path}")
+                print("💡 Tip: Make sure the file path is correct. Try using sample files:")
+                print("   - knowledge_base\\sample_biology.txt")
+                print("   - knowledge_base\\sample_computer_science.txt")
             except Exception as e:
-                print(f"❌ Error: {str(e)}")
+                error_msg = str(e)
+                print(f"❌ Error: {error_msg}")
+                if "EOF" in error_msg or "corrupted" in error_msg.lower() or "empty" in error_msg.lower():
+                    print("💡 Tip: The PDF file might be corrupted or incomplete.")
+                    print("   Try using a different file or use the sample text files:")
+                    print("   - knowledge_base\\sample_biology.txt")
+                    print("   - knowledge_base\\sample_computer_science.txt")
+                elif "Can't handle" in error_msg:
+                    print("💡 Tip: Only PDF (.pdf) and text (.txt) files are supported.")
         
         elif choice == "2":
             # Generate content
