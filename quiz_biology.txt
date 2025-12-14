@@ -1,0 +1,67 @@
+Topic: biology
+Type: Quiz
+============================================================
+
+### Biology Quiz
+
+**Multiple Choice Questions:**
+
+1. What is the main difference between prokaryotic and eukaryotic cells?
+   A) Prokaryotic cells have a nucleus, while eukaryotic cells do not.
+   B) Eukaryotic cells have membrane-bound organelles, while prokaryotic cells do not.
+   C) Eukaryotic cells lack DNA, unlike prokaryotic cells.
+   D) Prokaryotic cells are larger in size compared to eukaryotic cells.
+
+2. Which organelle is responsible for protein synthesis in a cell?
+   A) Nucleus
+   B) Mitochondria
+   C) Ribosomes
+   D) Chloroplasts
+
+3. What is the genetic material that carries instructions for development, functioning, and reproduction?
+   A) RNA
+   B) ATP
+   C) DNA
+   D) Proteins
+
+4. What is the process that involves DNA being transcribed into RNA and then translated into proteins?
+   A) Replication
+   B) Transcription
+   C) Translation
+   D) Mutation
+
+5. Which of the following is a key concept of evolution?
+   A) Artificial selection
+   B) Uniformitarianism
+   C) Catastrophism
+   D) Natural selection
+
+**True/False Questions:**
+
+6. True or False: DNA is composed of nucleotides A, T, G, and C.
+   
+7. True or False: Evolution is the process by which species stay the same over time.
+   
+8. True or False: Ecosystems consist only of living organisms.
+
+**Short Answer Questions:**
+
+9. Explain the difference between natural selection and genetic variation in the context of evolution.
+   
+10. Describe the roles of producers, consumers, and decomposers in an ecosystem.
+
+**Answers:**
+
+1. B) Eukaryotic cells have membrane-bound organelles, while prokaryotic cells do not.
+2. C) Ribosomes
+3. C) DNA
+4. C) Translation
+5. D) Natural selection
+
+6. True
+7. False
+8. False
+
+9. Natural selection refers to the process where organisms with advantageous traits are more likely to survive and reproduce, leading to the passing on of those traits to future generations. Genetic variation, on the other hand, refers to the differences in DNA among individuals within a population that provide the raw material for natural selection to act upon.
+
+10. Producers, such as plants, produce food through photosynthesis. Consumers, like animals, feed on other organisms. Decomposers break down dead organic matter and recycle nutrients back into the ecosystem.
