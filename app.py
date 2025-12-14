@@ -11,17 +11,35 @@ Features:
 - Download generated content as text files
 """
 
-import streamlit as st
 import os
-import tempfile
+import sys
 import warnings
 import logging
 
-# Suppress non-critical warnings
-warnings.filterwarnings("ignore", category=UserWarning)
-warnings.filterwarnings("ignore", message=".*torch.classes.*")
-logging.getLogger("chromadb").setLevel(logging.ERROR)
-logging.getLogger("httpx").setLevel(logging.WARNING)
+# Suppress warnings BEFORE any other imports
+warnings.filterwarnings("ignore")
+os.environ["PYTHONWARNINGS"] = "ignore"
+
+# Suppress specific loggers
+logging.getLogger("chromadb").setLevel(logging.CRITICAL)
+logging.getLogger("httpx").setLevel(logging.CRITICAL)
+logging.getLogger("httpcore").setLevel(logging.CRITICAL)
+
+# Redirect stderr for chromadb telemetry errors
+class SuppressChromaTelemetry:
+    def write(self, text):
+        if "telemetry" in text.lower() or "torch.classes" in text.lower():
+            return
+        sys.__stderr__.write(text)
+    def flush(self):
+        sys.__stderr__.flush()
+
+# Only suppress if not in debug mode
+if not os.getenv("DEBUG"):
+    sys.stderr = SuppressChromaTelemetry()
+
+import streamlit as st
+import tempfile
 
 from dotenv import load_dotenv
 from rag_system import RAGSystem
