@@ -11,7 +11,7 @@ It integrates with OpenAI's API to generate educational content using:
 
 from typing import Dict, Optional
 from langchain_openai import ChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 import os
 
 

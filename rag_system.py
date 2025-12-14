@@ -16,11 +16,11 @@ The system allows users to:
 import os
 import shutil
 from typing import List, Dict, Optional
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import OpenAIEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_chroma import Chroma
+from langchain_openai import OpenAIEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
-from langchain.schema import Document
+from langchain_core.documents import Document
 
 
 class RAGSystem:
@@ -64,12 +64,18 @@ class RAGSystem:
                 persist_directory=self.persist_directory,
                 embedding_function=self.embeddings
             )
-        except Exception:
+        except Exception as e:
             # Create new vector store if it doesn't exist
-            self.vector_store = Chroma(
-                persist_directory=self.persist_directory,
-                embedding_function=self.embeddings
-            )
+            try:
+                self.vector_store = Chroma(
+                    persist_directory=self.persist_directory,
+                    embedding_function=self.embeddings
+                )
+            except Exception:
+                # Fallback: create without persist_directory
+                self.vector_store = Chroma(
+                    embedding_function=self.embeddings
+                )
     
     def load_document(self, file_path: str) -> List[Document]:
         """
@@ -112,7 +118,11 @@ class RAGSystem:
                     chunk.metadata.update(metadata[i])
         
         self.vector_store.add_documents(chunks)
-        self.vector_store.persist()
+        # Persist is handled automatically in newer versions, but keep for compatibility
+        try:
+            self.vector_store.persist()
+        except AttributeError:
+            pass  # persist() not needed in newer versions
     
     def retrieve_relevant_context(self, query: str, k: int = 5) -> List[Document]:
         """
