@@ -33,7 +33,7 @@ class PromptEngineer:
         """
         self.llm = ChatOpenAI(
             openai_api_key=api_key or os.getenv("OPENAI_API_KEY"),
-            model_name=model,
+            model=model,
             temperature=0.7
         )
         self.model = model
