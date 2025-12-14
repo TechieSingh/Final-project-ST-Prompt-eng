@@ -1,3 +1,16 @@
+"""
+Educational Content Generator - Main Application
+
+This Streamlit application provides a web interface for generating educational content
+using RAG (Retrieval-Augmented Generation) and prompt engineering techniques.
+
+Features:
+- Generate study guides, quizzes, explanations, summaries, and practice problems
+- Upload documents to build a knowledge base
+- Use RAG to enhance content with domain-specific information
+- Download generated content as text files
+"""
+
 import streamlit as st
 import os
 import tempfile
@@ -23,6 +36,12 @@ if 'knowledge_base_initialized' not in st.session_state:
     st.session_state.knowledge_base_initialized = False
 
 def initialize_systems():
+    """
+    Initialize RAG system and Prompt Engineer components.
+    
+    Returns:
+        bool: True if initialization successful, False otherwise
+    """
     api_key = os.getenv("OPENAI_API_KEY")
     
     if not api_key:

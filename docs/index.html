@@ -11,61 +11,126 @@
             margin: 0 auto;
             padding: 20px;
             line-height: 1.6;
+            background-color: #fafafa;
         }
         h1 {
-            color: #333;
-            border-bottom: 2px solid #333;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
             padding-bottom: 10px;
         }
         h2 {
-            color: #555;
+            color: #34495e;
             margin-top: 30px;
         }
         .section {
             margin: 30px 0;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         ul {
             margin: 10px 0;
         }
         a {
-            color: #0066cc;
+            color: #3498db;
         }
         .btn {
             display: inline-block;
-            padding: 10px 20px;
-            background: #0066cc;
+            padding: 12px 24px;
+            background: #3498db;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             margin: 10px 10px 10px 0;
+            font-weight: normal;
         }
         .btn:hover {
-            background: #0052a3;
+            background: #2980b9;
+        }
+        .btn-demo {
+            background: #27ae60;
+            font-size: 18px;
+            padding: 15px 30px;
+        }
+        .btn-demo:hover {
+            background: #229954;
+        }
+        .demo-section {
+            background: #e8f8f5;
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
         }
     </style>
 </head>
 <body>
     <h1>Educational Content Generator</h1>
-    <p>A generative AI project that creates educational content using RAG and prompt engineering.</p>
+    <p>An AI-powered tool that helps create study guides, quizzes, explanations, and other educational materials. Built with RAG and prompt engineering.</p>
 
     <div class="section">
-        <h2>About</h2>
-        <p>This project generates educational materials like study guides, quizzes, explanations, summaries, and practice problems. It uses RAG to search through uploaded documents and prompt engineering to generate different types of content.</p>
+        <div class="demo-section">
+            <h2 style="margin-top: 0;">Interactive Demo</h2>
+            <p>Want to see it in action? You can run the interactive demo locally. The application provides a full-featured web interface where you can upload documents, generate content, and download results.</p>
+            
+            <h3>Quick Start Guide:</h3>
+            <ol>
+                <li><strong>Clone the repository:</strong> <code>git clone https://github.com/TechieSingh/Final-project-ST-Prompt-eng</code></li>
+                <li><strong>Install dependencies:</strong> <code>pip install -r requirements.txt</code></li>
+                <li><strong>Set up API key:</strong> Create a <code>.env</code> file with <code>OPENAI_API_KEY=your_key_here</code></li>
+                <li><strong>Run the app:</strong> <code>streamlit run app.py</code></li>
+            </ol>
+            
+            <h3>What You Can Do:</h3>
+            <ul>
+                <li>📄 Upload PDF or text documents to build your knowledge base</li>
+                <li>📚 Generate study guides with key concepts and examples</li>
+                <li>❓ Create quiz questions (multiple choice, true/false, short answer)</li>
+                <li>📖 Get detailed explanations of complex topics</li>
+                <li>📝 Generate concise summaries</li>
+                <li>✏️ Create practice problems with step-by-step solutions</li>
+                <li>💾 Download generated content as text files</li>
+                <li>🔍 View retrieved context from your knowledge base</li>
+            </ul>
+            
+            <p><strong>Note:</strong> The demo requires an OpenAI API key. The app will guide you through the setup process when you first run it.</p>
+            
+            <a href="https://github.com/TechieSingh/Final-project-ST-Prompt-eng" class="btn btn-demo">View on GitHub →</a>
+        </div>
     </div>
 
     <div class="section">
-        <h2>Features</h2>
+        <h2>What It Does</h2>
+        <p>This tool generates different types of educational content based on topics you provide. You can upload your own documents (PDFs or text files) to build a knowledge base, and the system will use that information to create more accurate and relevant content.</p>
+        <p>It can create:</p>
         <ul>
-            <li>RAG system with ChromaDB for document search</li>
-            <li>Prompt engineering for different content types</li>
-            <li>Web interface using Streamlit</li>
-            <li>Support for PDF and text document uploads</li>
-            <li>Multiple content types: study guides, quizzes, explanations, summaries, practice problems</li>
+            <li>Study guides with key concepts and examples</li>
+            <li>Quiz questions (multiple choice, true/false, short answer)</li>
+            <li>Detailed explanations of topics</li>
+            <li>Concise summaries</li>
+            <li>Practice problems with solutions</li>
         </ul>
     </div>
 
     <div class="section">
+        <h2>How It Works</h2>
+        <p>The system has two main parts:</p>
+        <ul>
+            <li><strong>RAG System:</strong> Stores your documents in a vector database and finds relevant information when you ask questions</li>
+            <li><strong>Prompt Engineering:</strong> Creates well-structured prompts for the AI to generate different types of content</li>
+        </ul>
+        <p>When you request content, it searches through your uploaded documents (if you have any), combines that with the AI's knowledge, and generates the content you need.</p>
+    </div>
+
+    <div class="section">
         <h2>System Architecture</h2>
+        <p>Here's a simple overview of how everything connects:</p>
         <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
         <script>mermaid.initialize({startOnLoad:true});</script>
         
@@ -95,64 +160,63 @@ graph TB
     </div>
 
     <div class="section">
-        <h2>Core Components</h2>
-        <h3>1. Retrieval-Augmented Generation (RAG)</h3>
+        <h2>Technical Details</h2>
+        <p><strong>Built with:</strong> Python, Streamlit for the web interface, LangChain for document processing, OpenAI's API for generation, and ChromaDB for storing document embeddings.</p>
+        
+        <p><strong>RAG Implementation:</strong> Documents are split into chunks, converted to embeddings, and stored in a vector database. When you ask for content, it finds the most relevant chunks and includes them in the prompt.</p>
+        
+        <p><strong>Prompt Engineering:</strong> Different prompts are used for each content type (study guide, quiz, etc.) to get the best results. The system also handles edge cases like empty inputs or overly long topics.</p>
+    </div>
+
+    <div class="section">
+        <h2>Getting Started</h2>
+        <p>If you want to run this yourself:</p>
+        <ol>
+            <li>Clone the repository from GitHub</li>
+            <li>Install dependencies: <code>pip install -r requirements.txt</code></li>
+            <li>Create a <code>.env</code> file and add your OpenAI API key: <code>OPENAI_API_KEY=your_key_here</code></li>
+            <li>Run the app: <code>streamlit run app.py</code></li>
+        </ol>
+        <p>That's it! The app should open in your browser.</p>
+    </div>
+
+    <div class="section">
+        <h2>Performance Notes</h2>
+        <p>In my testing, content generation usually takes 5-10 seconds depending on the complexity. Document retrieval is pretty fast (under a second). The quality of the output depends a lot on having good source material in your knowledge base.</p>
+    </div>
+
+    <div class="section">
+        <h2>Important Notes</h2>
+        <p>This is an AI-generated content tool, so keep in mind:</p>
         <ul>
-            <li>Vector database (ChromaDB) for similarity search</li>
-            <li>Document chunking with overlap</li>
-            <li>OpenAI embeddings for semantic search</li>
-            <li>Top-k retrieval with filtering</li>
-        </ul>
-
-        <h3>2. Prompt Engineering</h3>
-        <ul>
-            <li>Specialized prompts for each content type</li>
-            <li>Context integration from RAG system</li>
-            <li>Edge case handling</li>
-            <li>Custom requirements support</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>Technology Stack</h2>
-        <p>Python, Streamlit, LangChain, OpenAI API, ChromaDB</p>
-    </div>
-
-    <div class="section">
-        <h2>Documentation</h2>
-        <a href="PROJECT_DOCUMENTATION.md" class="btn">View Documentation</a>
-        <a href="ARCHITECTURE.md" class="btn">View Architecture</a>
-        <a href="https://github.com/TechieSingh/Final-project-ST-Prompt-eng" class="btn">View on GitHub</a>
-    </div>
-
-    <div class="section">
-        <h2>Setup</h2>
-        <p>1. Install dependencies: <code>pip install -r requirements.txt</code></p>
-        <p>2. Create .env file with your OpenAI API key</p>
-        <p>3. Run: <code>streamlit run app.py</code></p>
-    </div>
-
-    <div class="section">
-        <h2>Performance</h2>
-        <ul>
-            <li>Content generation: 5-10 seconds</li>
-            <li>Retrieval time: 0.5-1 second</li>
-            <li>Content quality: 90%+ with good knowledge base</li>
+            <li>All content is AI-generated and should be reviewed for accuracy</li>
+            <li>The system tracks sources from your uploaded documents when available</li>
+            <li>There's basic filtering to prevent inappropriate content</li>
+            <li>No user data is stored permanently - everything is session-based</li>
+            <li>Make sure you have permission to use any documents you upload</li>
         </ul>
     </div>
 
     <div class="section">
-        <h2>Ethical Considerations</h2>
+        <h2>Component Selection</h2>
+        <p>This project implements <strong>two core components</strong> as required:</p>
         <ul>
-            <li>All content is marked as AI-generated</li>
-            <li>Sources are tracked and can be cited</li>
-            <li>Basic content filtering implemented</li>
-            <li>Privacy considerations for user data</li>
+            <li><strong>Prompt Engineering:</strong> Systematic prompting strategies with context management and specialized flows</li>
+            <li><strong>RAG (Retrieval-Augmented Generation):</strong> Knowledge base with vector storage, document chunking, and retrieval mechanisms</li>
         </ul>
+        <p>These components were chosen because they work together effectively to create accurate, domain-specific educational content. RAG provides the knowledge grounding, while prompt engineering ensures high-quality, structured outputs for different content types.</p>
+    </div>
+
+    <div class="section">
+        <h2>Links & Documentation</h2>
+        <a href="PROJECT_DOCUMENTATION.md" class="btn">Full Documentation</a>
+        <a href="ARCHITECTURE.md" class="btn">Architecture Details</a>
+        <a href="https://github.com/TechieSingh/Final-project-ST-Prompt-eng" class="btn">GitHub Repository</a>
+        <a href="../VIDEO_SCRIPT.md" class="btn">Video Script</a>
     </div>
 
     <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #666;">
-        <p>Educational Content Generator - Generative AI Project</p>
+        <p>Educational Content Generator - A Generative AI Project</p>
     </footer>
 </body>
 </html>

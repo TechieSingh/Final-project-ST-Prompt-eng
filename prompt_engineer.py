@@ -1,3 +1,14 @@
+"""
+Prompt Engineering Module
+
+This module handles prompt creation and management for different content types.
+It integrates with OpenAI's API to generate educational content using:
+- Systematic prompting strategies
+- Context management from RAG system
+- Specialized prompts for different content types
+- Edge case handling and validation
+"""
+
 from typing import Dict, Optional
 from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
@@ -5,8 +16,21 @@ import os
 
 
 class PromptEngineer:
+    """
+    Prompt engineering system for generating educational content.
+    
+    Manages prompt templates, context integration, and content generation
+    using OpenAI's language models.
+    """
     
     def __init__(self, api_key: Optional[str] = None, model: str = "gpt-3.5-turbo"):
+        """
+        Initialize Prompt Engineer with OpenAI API.
+        
+        Args:
+            api_key: OpenAI API key (optional, can use env var)
+            model: Model name to use (default: gpt-3.5-turbo)
+        """
         self.llm = ChatOpenAI(
             openai_api_key=api_key or os.getenv("OPENAI_API_KEY"),
             model_name=model,
@@ -15,6 +39,12 @@ class PromptEngineer:
         self.model = model
     
     def _get_base_system_prompt(self) -> str:
+        """
+        Get base system prompt that defines the AI's role.
+        
+        Returns:
+            Base system prompt string
+        """
         return """You are an educational content creator. Generate accurate and clear educational materials. Make sure:
         1. Content is accurate
         2. Information is clear and easy to understand
@@ -23,6 +53,12 @@ class PromptEngineer:
         5. Content is well-organized"""
     
     def _get_content_type_prompts(self) -> Dict[str, str]:
+        """
+        Get specialized prompts for different content types.
+        
+        Returns:
+            Dictionary mapping content types to their prompt templates
+        """
         return {
             "study_guide": """Create a study guide on the given topic. Include:
             - Key concepts and definitions
@@ -74,6 +110,18 @@ class PromptEngineer:
         context: Optional[str] = None,
         additional_requirements: Optional[str] = None
     ) -> str:
+        """
+        Generate educational content for a given topic.
+        
+        Args:
+            content_type: Type of content (study_guide, quiz, explanation, etc.)
+            topic: Topic or subject to generate content about
+            context: Optional RAG context to include
+            additional_requirements: Optional additional requirements from user
+            
+        Returns:
+            Generated content as string, or error message if generation fails
+        """
         system_prompt = self._get_base_system_prompt()
         
         content_prompts = self._get_content_type_prompts()
@@ -115,6 +163,18 @@ Generate the content now:"""
         rag_system,
         additional_requirements: Optional[str] = None
     ) -> Dict[str, str]:
+        """
+        Generate content using RAG system to retrieve relevant context.
+        
+        Args:
+            content_type: Type of content to generate
+            topic: Topic or subject
+            rag_system: RAGSystem instance to retrieve context
+            additional_requirements: Optional additional requirements
+            
+        Returns:
+            Dictionary with generated content, context used, content type, and topic
+        """
         context = rag_system.get_context_string(topic, k=5)
         
         content = self.generate_content(
@@ -132,6 +192,20 @@ Generate the content now:"""
         }
     
     def handle_edge_cases(self, user_input: str) -> Optional[str]:
+        """
+        Validate user input and handle edge cases.
+        
+        Checks for:
+        - Empty or whitespace-only input
+        - Input length exceeding limits
+        - Inappropriate content
+        
+        Args:
+            user_input: User's input string
+            
+        Returns:
+            Error message string if validation fails, None if input is valid
+        """
         if not user_input or not user_input.strip():
             return "Please provide a topic or question."
         

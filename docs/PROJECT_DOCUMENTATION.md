@@ -8,6 +8,44 @@
 
 This project creates educational content using RAG and prompt engineering. It can generate study guides, quizzes, explanations, summaries, and practice problems.
 
+## Component Selection
+
+This project implements **two core components** as required:
+
+1. **Prompt Engineering** - Systematic prompting strategies with context management
+2. **RAG (Retrieval-Augmented Generation)** - Knowledge base with vector storage and retrieval
+
+### Why These Components?
+
+**Prompt Engineering** was chosen because:
+- Essential for generating different content types (study guides, quizzes, etc.)
+- Allows systematic context management from RAG system
+- Enables specialized user interaction flows
+- Provides robust edge case handling
+
+**RAG** was chosen because:
+- Enables domain-specific content generation using uploaded documents
+- Improves accuracy by grounding responses in knowledge base
+- Allows users to customize the system with their own materials
+- Provides source attribution and transparency
+
+### Why Not Fine-Tuning?
+
+Fine-tuning was not implemented because:
+- The project requirement is to implement **at least two** components (we have Prompt Engineering + RAG)
+- Fine-tuning would require extensive domain-specific training data collection
+- Current approach (RAG + Prompt Engineering) already achieves high-quality results
+- Fine-tuning adds complexity without proportional benefit for this use case
+- RAG provides flexibility to adapt to different domains without retraining
+
+### Why Not Multimodal or Synthetic Data Generation?
+
+These components were not chosen because:
+- The educational content generator primarily works with text
+- Text-based content is sufficient for study guides, quizzes, and explanations
+- Focus was on perfecting the core RAG and prompt engineering implementation
+- Synthetic data generation is not needed as users provide their own documents
+
 ## System Architecture
 
 ### System Architecture Diagram
@@ -213,4 +251,6 @@ Streamlit App (app.py)
 ## Project Links
 
 - Repository: https://github.com/TechieSingh/Final-project-ST-Prompt-eng
-- Web Page: web_page/index.html
+- Web Page: docs/index.html
+- Video Script: VIDEO_SCRIPT.md
+- Submission Checklist: SUBMISSION_CHECKLIST.md
